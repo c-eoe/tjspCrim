@@ -1,0 +1,19 @@
+Package: tjspCrim
+Title: TJSP Criminal Chambers Data and Analysis
+Version: 0.0.0.9000
+Authors@R:
+    c(person('Julio', 'Trecenti',
+             email = 'julio.trecenti@gmail.com',
+             role = c('cre', 'aut'),
+             comment = c(ORCID = "0000-0002-1680-6389")),
+      person(given = "Centro de Estudos da Ordem Economica",
+             role = c("cph", "fnd")))
+Description: This package contains data from the criminal chambers of the
+    Court of Justice of the State of São Paulo (TJSP). The data were
+    collected from the TJSP website and is available for download at
+    the repository releases. It also contains the draft of the paper
+    based on these data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
