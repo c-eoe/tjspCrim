@@ -4,3 +4,14 @@
 .httr-oauth
 .DS_Store
 .quarto
+data-raw/TJSP
+data-raw/cjsg
+data-raw/cposg
+data-raw/cposg_chunks
+data-raw/descritiva_cache
+data-raw/rds
+data-raw/descritiva_files
+data-raw/da_cjsg.rds
+data-raw/da_cjsg.parquet
+data-raw/da_cposg_sem_movs.rds
+data-raw/ref
