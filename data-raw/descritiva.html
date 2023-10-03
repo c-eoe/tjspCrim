@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.320">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Análise descritiva</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="descritiva_files/libs/clipboard/clipboard.min.js"></script>
+<script src="descritiva_files/libs/quarto-html/quarto.js"></script>
+<script src="descritiva_files/libs/quarto-html/popper.min.js"></script>
+<script src="descritiva_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="descritiva_files/libs/quarto-html/anchor.min.js"></script>
+<link href="descritiva_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="descritiva_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="descritiva_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="descritiva_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="descritiva_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="descritiva_files/libs/core-js-2.5.3/shim.min.js"></script>
+<script src="descritiva_files/libs/react-17.0.0/react.min.js"></script>
+<script src="descritiva_files/libs/react-17.0.0/react-dom.min.js"></script>
+<script src="descritiva_files/libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="descritiva_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="descritiva_files/libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="descritiva_files/libs/reactable-binding-0.4.4/reactable.js"></script>
+<script src="descritiva_files/libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="descritiva_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="descritiva_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="descritiva_files/libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="descritiva_files/libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="descritiva_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="descritiva_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análise descritiva</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+</section>
+<section id="metodologia" class="level2">
+<h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
+</section>
+<section id="descritiva" class="level2">
+<h2 class="anchored" data-anchor-id="descritiva">Descritiva</h2>
+<p>Quantitativos gerais:</p>
+<ul>
+<li>Quantidade de acórdãos baixados (CJSG): 397,543</li>
+<li>Quantidade de processos distintos (CJSG): 392.844</li>
+<li>Quantidade de processos consultados (CPOSG): 315.197
+<ul>
+<li>O restante estava em segredo de justiça</li>
+</ul></li>
+</ul>
+<p>Partes e decisão:</p>
+<ul>
+<li>Quantidade de processos com decisão de mérito: 268.477
+<ul>
+<li>O restante estava como não conhecido, prejudicado, extinção de punibilidade, diligência etc</li>
+</ul></li>
+<li>Quantidade de processos com MP como apelante ou apelado: 291.289
+<ul>
+<li>O restante estava como apelante E apelado</li>
+</ul></li>
+<li>Combinando partes e decisão, temos 247.625 casos</li>
+</ul>
+<section id="quantidade-de-decisões-no-tempo" class="level3">
+<h3 class="anchored" data-anchor-id="quantidade-de-decisões-no-tempo">Quantidade de decisões no tempo</h3>
+<p>Por ano (geral)</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>aux_decisoes <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(decisoes_data)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(ano) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> ano, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_hc</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="descritiva_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Por ano (câmaras)</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>aux_decisoes <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(decisoes_data),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">orgao_julgador =</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(orgao_julgador, <span class="st">".*Câmara"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(ano, orgao_julgador) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> ano, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(orgao_julgador)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_hc</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="descritiva_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Por mês (geral)</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>aux_decisoes <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano_mes =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(decisoes_data, <span class="st">"month"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(ano_mes) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> ano_mes, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_hc</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="descritiva_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Por mês (câmaras)</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>aux_decisoes <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano_mes =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(decisoes_data, <span class="st">"month"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">orgao_julgador =</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(orgao_julgador, <span class="st">".*Câmara"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(ano_mes, orgao_julgador) <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> ano_mes, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(orgao_julgador)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_hc</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="descritiva_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="composição" class="level3">
+<h3 class="anchored" data-anchor-id="composição">Composição</h3>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>aux_composicao <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(aux_decisoes, file, decisoes_data),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"file"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(da_cposg_sem_movs, file, orgao_julgador),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"file"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">ano =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(decisoes_data)) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(ano, orgao_julgador, magistrado) <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(ano, orgao_julgador, magistrado, n) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(magistrado) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(ano, orgao_julgador) <span class="sc">|&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">pessoas =</span> <span class="fu">paste</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{seq_len(dplyr::n())} {magistrado} ({n})"</span>), <span class="at">collapse =</span> <span class="st">"&lt;br&gt;"</span>),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> ano, <span class="at">values_from =</span> pessoas) <span class="sc">|&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  reactable<span class="sc">::</span><span class="fu">reactable</span>(</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">2019</span><span class="st">`</span> <span class="ot">=</span> reactable<span class="sc">::</span><span class="fu">colDef</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">2020</span><span class="st">`</span> <span class="ot">=</span> reactable<span class="sc">::</span><span class="fu">colDef</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">2021</span><span class="st">`</span> <span class="ot">=</span> reactable<span class="sc">::</span><span class="fu">colDef</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="ot">=</span> reactable<span class="sc">::</span><span class="fu">colDef</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">html =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">striped =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">compact =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">highlight =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontSize =</span> <span class="dv">10</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c99611f0d6f4606ccbe6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c99611f0d6f4606ccbe6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"orgao_julgador":["01ª Câmara de Direito Criminal","02ª Câmara de Direito Criminal","03ª Câmara de Direito Criminal","04ª Câmara de Direito Criminal","05ª Câmara de Direito Criminal","06ª Câmara de Direito Criminal","07ª Câmara de Direito Criminal","08ª Câmara de Direito Criminal","09ª Câmara de Direito Criminal","10ª Câmara de Direito Criminal","11ª Câmara de Direito Criminal","12ª Câmara de Direito Criminal","13ª Câmara de Direito Criminal","14ª Câmara de Direito Criminal","15ª Câmara de Direito Criminal","16ª Câmara de Direito Criminal"],"2019":["1 Diniz Fernando (1000)<br>2 Figueiredo Gonçalves (2007)<br>3 Ivo de Almeida (3270)<br>4 Márcio Bartoli (2495)<br>5 Mário Devienne Ferraz (2238)<br>6 Péricles Piza (2022)","1 Alex Zilenovski (2436)<br>2 Almeida Sampaio (869)<br>3 Amaro Thomé (1722)<br>4 Costabile e Solimene (2064)<br>5 Francisco Orlando (3462)<br>6 Kenarik Boujikian (136)<br>7 Luiz Fernando Vaggione (2651)<br>8 Sérgio Mazina Martins (1269)","1 César Augusto Andrade de Castro (2958)<br>2 Jaime Ferreira Menino (1306)<br>3 Luiz Antonio Cardoso (3195)<br>4 Ruy Alberto Leme Cavalheiro (2537)<br>5 Toloza Neto (3186)<br>6 Álvaro Castello (2618)","1 Camilo Léllis (3246)<br>2 Edison Brandão (3040)<br>3 Euvaldo Chaib (3391)<br>4 Ivana David (1223)<br>5 Luis Soares de Mello (3137)<br>6 Roberto Porto (3050)","1 Claudia Fonseca Fanucchi (1898)<br>2 Damião Cogan (1930)<br>3 Geraldo Wohlers (2758)<br>4 Juvenal Duarte (958)<br>5 Mauricio Henrique Guimarães Pereira (917)<br>6 Tristão Ribeiro (3217)","1 Farto Salles (726)<br>2 José Raul Gavião de Almeida (2922)<br>3 Machado de Andrade (3784)<br>4 Marco Antonio Marques da Silva (2025)<br>5 Marcos Correa (1287)<br>6 Mens de Mello (1299)<br>7 Ricardo Tucunduva (3731)<br>8 Zorzi Rocha (2933)","1 Alberto Anderson Filho (2911)<br>2 Eduardo Abdalla (1220)<br>3 Fernando Simão (2235)<br>4 Freitas Filho (3287)<br>5 Mauricio Valala (211)<br>6 Otavio Rocha (2475)<br>7 Reinaldo Cintra (2840)","1 Alcides Malossi Junior (841)<br>2 Alexandre Almeida (176)<br>3 Ely Amioka (882)<br>4 Farto Salles (1649)<br>5 Grassi Neto (611)<br>6 Marco Antônio Cogan (3024)<br>7 Mauricio Valala (2688)<br>8 Roberto Porto (417)<br>9 Sérgio Ribas (3090)<br>10 Tetsuzo Namba (357)","1 Alcides Malossi Junior (1501)<br>2 Amaro Thomé (997)<br>3 Andrade Sampaio (3068)<br>4 Costabile e Solimene (1004)<br>5 Farto Salles (363)<br>6 Fátima Gomes (420)<br>7 Grassi Neto (1827)<br>8 Márcio Eid Sammarco (440)<br>9 Silmar Fernandes (2962)<br>10 Sérgio Coelho (3450)","1 Carlos Bueno (1980)<br>2 Francisco Bruno (2430)<br>3 Fábio Gouvêa (2690)<br>4 Nelson Fonseca Júnior (1034)<br>5 Nuevo Campos (2406)<br>6 Rachid Vaz de Almeida (2684)","1 Alexandre Almeida (1100)<br>2 Guilherme G. Strenger (3316)<br>3 Maria Tereza do Amaral (2446)<br>4 Paiva Coutinho (3202)<br>5 Salles Abreu (2768)<br>6 Xavier de Souza (3056)","1 Amable Lopez Soto (2840)<br>2 Angélica de Almeida (2657)<br>3 Heitor Donizete de Oliveira (228)<br>4 João Morenghi (2809)<br>5 Marcelo Gordo (764)<br>6 Paulo Rossi (3040)<br>7 Vico Mañas (2648)","1 Augusto de Siqueira (3632)<br>2 Cardoso Perpétuo (3539)<br>3 De Paula Santos (1241)<br>4 França Carvalho (2827)<br>5 Luis Augusto de Sampaio Arruda (962)<br>6 Marcelo Gordo (609)<br>7 Moreira da Silva (3053)","1 Hermann Herschander (3091)<br>2 Laerte Marrone (937)<br>3 Marco de Lorenzi (3077)<br>4 Miguel Marques e Silva (2823)<br>5 Walter da Silva (3156)","1 Cláudio Marques (3357)<br>2 Gilberto Cruz (1497)<br>3 Gilda Alves Barbosa Diodatti (3361)<br>4 Poças Leitão (2846)<br>5 Ricardo Sale Júnior (3103)<br>6 Willian Campos (3558)","1 Camargo Aranha Filho (1814)<br>2 Guilherme de Souza Nucci (3297)<br>3 Leme Garcia (3759)<br>4 Newton Neves (2993)<br>5 Osni Pereira (1085)<br>6 Otávio de Almeida Toledo (3300)"],"2020":["1 Andrade Sampaio (516)<br>2 Diniz Fernando (1183)<br>3 Figueiredo Gonçalves (2041)<br>4 Ivo de Almeida (3508)<br>5 Márcio Bartoli (1914)<br>6 Mário Devienne Ferraz (3025)<br>7 Péricles Piza (1735)","1 Alex Zilenovski (2649)<br>2 Amaro Thomé (2524)<br>3 Costabile e Solimene (2196)<br>4 Francisco Orlando (3670)<br>5 Klaus Marouelli Arroyo (524)<br>6 Luiz Fernando Vaggione (3495)<br>7 Sérgio Mazina Martins (1133)","1 Cesar Mecchi Morales (1330)<br>2 César Augusto Andrade de Castro (1411)<br>3 Luiz Antonio Cardoso (2413)<br>4 Ruy Alberto Leme Cavalheiro (2478)<br>5 Toloza Neto (2524)<br>6 Xisto Albarelli Rangel Neto (565)<br>7 Álvaro Castello (1846)","1 Camilo Léllis (2847)<br>2 Edison Brandão (2164)<br>3 Euvaldo Chaib (3022)<br>4 Ivana David (931)<br>5 Luis Soares de Mello (497)<br>6 Roberto Porto (2263)","1 Claudia Fonseca Fanucchi (2059)<br>2 Damião Cogan (1924)<br>3 Geraldo Wohlers (2146)<br>4 Mauricio Henrique Guimarães Pereira (796)<br>5 Tristão Ribeiro (2595)","1 Eduardo Abdalla (970)<br>2 Farto Salles (3212)<br>3 José Raul Gavião de Almeida (1852)<br>4 Machado de Andrade (3385)<br>5 Marcos Correa (1187)<br>6 Mens de Mello (1084)<br>7 Ricardo Tucunduva (3410)<br>8 Zorzi Rocha (2782)","1 Alberto Anderson Filho (2362)<br>2 Eduardo Abdalla (518)<br>3 Fernando Simão (2165)<br>4 Freitas Filho (2392)<br>5 Klaus Marouelli Arroyo (319)<br>6 Otavio Rocha (2044)<br>7 Reinaldo Cintra (2147)","1 Alexandre Almeida (358)<br>2 Ely Amioka (845)<br>3 José Vitor Teixeira de Freitas (369)<br>4 Juscelino Batista (2156)<br>5 Luis Augusto de Sampaio Arruda (855)<br>6 Marco Antônio Cogan (2610)<br>7 Mauricio Valala (2745)<br>8 Sérgio Ribas (2215)","1 Alcides Malossi Junior (2871)<br>2 Andrade Sampaio (1925)<br>3 César Augusto Andrade de Castro (174)<br>4 Fátima Gomes (1112)<br>5 Grassi Neto (2766)<br>6 Silmar Fernandes (2980)<br>7 Sérgio Coelho (2461)","1 Carlos Bueno (1858)<br>2 Francisco Bruno (1987)<br>3 Fábio Gouvêa (1968)<br>4 Nelson Fonseca Júnior (1230)<br>5 Nuevo Campos (777)<br>6 Rachid Vaz de Almeida (2360)","1 Alexandre Almeida (2228)<br>2 Guilherme G. Strenger (148)<br>3 Maria Tereza do Amaral (2723)<br>4 Paiva Coutinho (2314)<br>5 Salles Abreu (267)<br>6 Tetsuzo Namba (1125)<br>7 Xavier de Souza (2819)","1 Amable Lopez Soto (2279)<br>2 Angélica de Almeida (1577)<br>3 Heitor Donizete de Oliveira (373)<br>4 João Morenghi (1947)<br>5 Paulo Rossi (2036)<br>6 Vico Mañas (2206)","1 Augusto de Siqueira (3253)<br>2 Cardoso Perpétuo (3339)<br>3 França Carvalho (3107)<br>4 Luis Augusto de Sampaio Arruda (709)<br>5 Marcelo Gordo (3128)<br>6 Moreira da Silva (3427)<br>7 Xisto Albarelli Rangel Neto (776)","1 Fernando Torres Garcia (2380)<br>2 Hermann Herschander (2488)<br>3 Laerte Marrone (1148)<br>4 Marco de Lorenzi (2749)<br>5 Miguel Marques e Silva (2588)<br>6 Walter da Silva (2702)","1 Cláudio Marques (3139)<br>2 Gilberto Cruz (937)<br>3 Gilda Alves Barbosa Diodatti (2717)<br>4 Poças Leitão (2042)<br>5 Ricardo Sale Júnior (3299)<br>6 Willian Campos (2530)","1 Camargo Aranha Filho (2798)<br>2 Guilherme de Souza Nucci (3195)<br>3 Leme Garcia (2600)<br>4 Marcos Alexandre Coelho Zilli (628)<br>5 Newton Neves (2451)<br>6 Osni Pereira (973)<br>7 Otávio de Almeida Toledo (2880)"],"2021":["1 Alberto Anderson Filho (567)<br>2 Andrade Sampaio (2276)<br>3 Diniz Fernando (926)<br>4 Figueiredo Gonçalves (2117)<br>5 Ivo de Almeida (1979)<br>6 Márcio Bartoli (1166)<br>7 Mário Devienne Ferraz (2045)","1 Alex Zilenovski (1958)<br>2 Amaro Thomé (755)<br>3 André Carvalho e Silva de Almeida (672)<br>4 Costabile e Solimene (1319)<br>5 Francisco Orlando (2112)<br>6 Luiz Fernando Vaggione (1671)","1 Cesar Mecchi Morales (1654)<br>2 Jayme Walmer de Freitas (703)<br>3 Luiz Antonio Cardoso (1619)<br>4 Ruy Alberto Leme Cavalheiro (1682)<br>5 Toloza Neto (1637)<br>6 Álvaro Castello (1557)","1 Camilo Léllis (1748)<br>2 Edison Brandão (1613)<br>3 Euvaldo Chaib (1685)<br>4 Ivana David (260)<br>5 Roberto Porto (1716)","1 Claudia Fonseca Fanucchi (1793)<br>2 Damião Cogan (1540)<br>3 Geraldo Wohlers (1859)<br>4 Mauricio Henrique Guimarães Pereira (750)<br>5 Tristão Ribeiro (1868)","1 Eduardo Abdalla (3390)<br>2 Farto Salles (2698)<br>3 Machado de Andrade (3071)<br>4 Marcos Correa (919)<br>5 Mens de Mello (609)<br>6 Ricardo Tucunduva (3309)<br>7 Zorzi Rocha (1853)","1 Adilson Paukoski Simoni (130)<br>2 Alberto Anderson Filho (1451)<br>3 Fernando Simão (2291)<br>4 Freitas Filho (2013)<br>5 Ivana David (473)<br>6 Klaus Marouelli Arroyo (1112)<br>7 Mens de Mello (392)<br>8 Otavio Rocha (1252)<br>9 Reinaldo Cintra (2015)","1 Ely Amioka (816)<br>2 Freddy Lourenço Ruiz Costa (287)<br>3 José Vitor Teixeira de Freitas (923)<br>4 Juscelino Batista (2925)<br>5 Luis Augusto de Sampaio Arruda (2699)<br>6 Marco Antônio Cogan (2776)<br>7 Mauricio Valala (2573)<br>8 Sérgio Ribas (2611)","1 Alcides Malossi Junior (2380)<br>2 César Augusto Andrade de Castro (2336)<br>3 Fátima Gomes (1156)<br>4 Grassi Neto (1708)<br>5 Silmar Fernandes (2488)<br>6 Sérgio Coelho (2017)","1 Carlos Bueno (982)<br>2 Francisco Bruno (1991)<br>3 Fábio Gouvêa (1833)<br>4 Nelson Fonseca Júnior (223)<br>5 Nuevo Campos (1540)<br>6 Rachid Vaz de Almeida (1854)<br>7 Ulysses Gonçalves Junior (773)","1 Alexandre Almeida (2218)<br>2 Maria Tereza do Amaral (2483)<br>3 Paiva Coutinho (2241)<br>4 Tetsuzo Namba (606)<br>5 Xavier de Souza (2839)","1 Amable Lopez Soto (2999)<br>2 Angélica de Almeida (592)<br>3 Heitor Donizete de Oliveira (1019)<br>4 João Morenghi (2360)<br>5 Paulo Rossi (2674)<br>6 Sérgio Mazina Martins (1511)<br>7 Vico Mañas (2283)","1 Augusto de Siqueira (2320)<br>2 Cláudio Marques (368)<br>3 Marcelo Gordo (2448)<br>4 Marcelo Semer (1304)<br>5 Moreira da Silva (2115)<br>6 Sérgio Mazina Martins (831)<br>7 Xisto Albarelli Rangel Neto (1014)","1 Fernando Torres Garcia (2397)<br>2 Hermann Herschander (2385)<br>3 Laerte Marrone (836)<br>4 Marco de Lorenzi (2214)<br>5 Miguel Marques e Silva (2229)<br>6 Walter da Silva (2326)","1 Bueno de Camargo (345)<br>2 Cláudio Marques (1556)<br>3 Gilberto Cruz (749)<br>4 Gilda Alves Barbosa Diodatti (2041)<br>5 Poças Leitão (1742)<br>6 Ricardo Sale Júnior (2148)<br>7 Willian Campos (1976)","1 Camargo Aranha Filho (2832)<br>2 Guilherme de Souza Nucci (2870)<br>3 Leme Garcia (2853)<br>4 Marcos Alexandre Coelho Zilli (1012)<br>5 Newton Neves (2658)<br>6 Osni Pereira (1426)<br>7 Otávio de Almeida Toledo (2759)"],"2022":["1 Alberto Anderson Filho (2723)<br>2 Andrade Sampaio (2779)<br>3 Diniz Fernando (958)<br>4 Figueiredo Gonçalves (2807)<br>5 Ivo de Almeida (2349)<br>6 Mário Devienne Ferraz (2583)","1 Alex Zilenovski (2837)<br>2 André Carvalho e Silva de Almeida (913)<br>3 Costabile e Solimene (1803)<br>4 Francisco Orlando (2134)<br>5 Luiz Fernando Vaggione (1597)","1 Cesar Mecchi Morales (268)<br>2 Hugo Maranzano (263)<br>3 Jayme Walmer de Freitas (1110)<br>4 Luiz Antonio Cardoso (1892)<br>5 Ruy Alberto Leme Cavalheiro (1753)<br>6 Toloza Neto (1971)<br>7 Álvaro Castello (1756)","1 Camilo Léllis (1951)<br>2 Edison Brandão (1862)<br>3 Euvaldo Chaib (1982)<br>4 Fátima Vilas Boas Cruz (762)<br>5 Luis Soares de Mello (1955)<br>6 Roberto Porto (1867)","1 Claudia Fonseca Fanucchi (2162)<br>2 Damião Cogan (1596)<br>3 Geraldo Wohlers (2308)<br>4 Mauricio Henrique Guimarães Pereira (925)<br>5 Pinheiro Franco (1725)<br>6 Tristão Ribeiro (1715)","1 Eduardo Abdalla (2163)<br>2 Farto Salles (2155)<br>3 Machado de Andrade (2169)<br>4 Marcos Correa (994)<br>5 Ricardo Tucunduva (2209)<br>6 Zorzi Rocha (2061)","1 Adilson Paukoski Simoni (197)<br>2 Fernando Simão (2426)<br>3 Freitas Filho (2527)<br>4 Ivana David (2630)<br>5 Klaus Marouelli Arroyo (1236)<br>6 Mens de Mello (2438)<br>7 Reinaldo Cintra (1427)","1 Ely Amioka (867)<br>2 Freddy Lourenço Ruiz Costa (1159)<br>3 José Vitor Teixeira de Freitas (1166)<br>4 Juscelino Batista (2889)<br>5 Luis Augusto de Sampaio Arruda (3150)<br>6 Marco Antônio Cogan (2911)<br>7 Mauricio Valala (2528)<br>8 Sérgio Ribas (3279)","1 Alcides Malossi Junior (1976)<br>2 César Augusto Andrade de Castro (2363)<br>3 Fátima Gomes (958)<br>4 Grassi Neto (2008)<br>5 Silmar Fernandes (820)<br>6 Sérgio Coelho (2237)","1 Adilson Paukoski Simoni (632)<br>2 Francisco Bruno (103)<br>3 Fábio Gouvêa (2573)<br>4 Jucimara Esther de Lima Bueno (1688)<br>5 Nelson Fonseca Júnior (1753)<br>6 Nuevo Campos (3040)<br>7 Rachid Vaz de Almeida (2750)<br>8 Ulysses Gonçalves Junior (946)","1 Alexandre Almeida (2086)<br>2 Maria Tereza do Amaral (375)<br>3 Paiva Coutinho (2211)<br>4 Renato Genzani Filho (1458)<br>5 Tetsuzo Namba (660)<br>6 Xavier de Souza (2401)","1 Amable Lopez Soto (2738)<br>2 Heitor Donizete de Oliveira (1235)<br>3 João Morenghi (2293)<br>4 Paulo Rossi (2618)<br>5 Sérgio Mazina Martins (2773)<br>6 Vico Mañas (2579)","1 Augusto de Siqueira (2660)<br>2 Cláudio Marques (1255)<br>3 J. E. S. Bittencourt Rodrigues (356)<br>4 Luís Geraldo Lanfredi (186)<br>5 Marcelo Gordo (2840)<br>6 Marcelo Semer (2062)<br>7 Moreira da Silva (1119)<br>8 Xisto Albarelli Rangel Neto (2517)","1 Fernando Torres Garcia (104)<br>2 Freire Teotônio (964)<br>3 Hermann Herschander (3080)<br>4 Laerte Marrone (405)<br>5 Marco de Lorenzi (2410)<br>6 Miguel Marques e Silva (2644)<br>7 Walter da Silva (2979)","1 Bueno de Camargo (1447)<br>2 Gilberto Cruz (935)<br>3 Gilda Alves Barbosa Diodatti (1888)<br>4 Poças Leitão (2015)<br>5 Ricardo Sale Júnior (1862)<br>6 Willian Campos (1925)","1 Camargo Aranha Filho (2391)<br>2 Guilherme de Souza Nucci (2209)<br>3 Leme Garcia (2432)<br>4 Marcos Alexandre Coelho Zilli (1000)<br>5 Newton Neves (1614)<br>6 Osni Pereira (132)<br>7 Otávio de Almeida Toledo (2108)"]},"columns":[{"id":"orgao_julgador","name":"orgao_julgador","type":"character"},{"id":"2019","name":"2019","type":"character","html":true,"align":"left"},{"id":"2020","name":"2020","type":"character","html":true,"align":"left"},{"id":"2021","name":"2021","type":"character","html":true,"align":"left"},{"id":"2022","name":"2022","type":"character","html":true,"align":"left"}],"highlight":true,"striped":true,"compact":true,"style":{"fontSize":10},"dataKey":"af8e6323e00832fa32402ffa1af009cb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>aux_composicao <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(aux_decisoes, file, decisoes_data),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"file"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(da_cposg_sem_movs, file, orgao_julgador),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"file"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(decisoes_data),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">orgao_julgador =</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(orgao_julgador, <span class="st">".*Câmara"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(ano, orgao_julgador, magistrado) <span class="sc">|&gt;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">n =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(ano, orgao_julgador, magistrado, n) <span class="sc">|&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(magistrado) <span class="sc">|&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(orgao_julgador, magistrado) <span class="sc">|&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">anos =</span> <span class="fu">paste</span>(<span class="fu">unique</span>(<span class="fu">sort</span>(ano)), <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(orgao_julgador, dplyr<span class="sc">::</span><span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  reactable<span class="sc">::</span><span class="fu">reactable</span>(</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">striped =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">compact =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">highlight =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bd76a508ef1b4a73660d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bd76a508ef1b4a73660d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"orgao_julgador":["01ª Câmara","01ª Câmara","01ª Câmara","01ª Câmara","01ª Câmara","01ª Câmara","01ª Câmara","01ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","02ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","03ª Câmara","04ª Câmara","04ª Câmara","04ª Câmara","04ª Câmara","04ª Câmara","04ª Câmara","04ª Câmara","05ª Câmara","05ª Câmara","05ª Câmara","05ª Câmara","05ª Câmara","05ª Câmara","05ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","06ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","07ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","08ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","09ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","10ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","11ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","12ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","13ª Câmara","14ª Câmara","14ª Câmara","14ª Câmara","14ª Câmara","14ª Câmara","14ª Câmara","14ª Câmara","15ª Câmara","15ª Câmara","15ª Câmara","15ª Câmara","15ª Câmara","15ª Câmara","15ª Câmara","16ª Câmara","16ª Câmara","16ª Câmara","16ª Câmara","16ª Câmara","16ª Câmara","16ª Câmara"],"magistrado":["Ivo de Almeida","Mário Devienne Ferraz","Figueiredo Gonçalves","Márcio Bartoli","Andrade Sampaio","Diniz Fernando","Péricles Piza","Alberto Anderson Filho","Francisco Orlando","Alex Zilenovski","Luiz Fernando Vaggione","Costabile e Solimene","Amaro Thomé","Sérgio Mazina Martins","André Carvalho e Silva de Almeida","Almeida Sampaio","Klaus Marouelli Arroyo","Kenarik Boujikian","Toloza Neto","Luiz Antonio Cardoso","Ruy Alberto Leme Cavalheiro","Álvaro Castello","César Augusto Andrade de Castro","Cesar Mecchi Morales","Jayme Walmer de Freitas","Jaime Ferreira Menino","Xisto Albarelli Rangel Neto","Hugo Maranzano","Euvaldo Chaib","Camilo Léllis","Roberto Porto","Edison Brandão","Luis Soares de Mello","Ivana David","Fátima Vilas Boas Cruz","Tristão Ribeiro","Geraldo Wohlers","Claudia Fonseca Fanucchi","Damião Cogan","Mauricio Henrique Guimarães Pereira","Pinheiro Franco","Juvenal Duarte","Ricardo Tucunduva","Machado de Andrade","Zorzi Rocha","Farto Salles","Eduardo Abdalla","José Raul Gavião de Almeida","Marcos Correa","Mens de Mello","Marco Antonio Marques da Silva","Freitas Filho","Fernando Simão","Reinaldo Cintra","Alberto Anderson Filho","Otavio Rocha","Ivana David","Mens de Mello","Klaus Marouelli Arroyo","Eduardo Abdalla","Adilson Paukoski Simoni","Mauricio Valala","Marco Antônio Cogan","Sérgio Ribas","Mauricio Valala","Juscelino Batista","Luis Augusto de Sampaio Arruda","Ely Amioka","José Vitor Teixeira de Freitas","Farto Salles","Freddy Lourenço Ruiz Costa","Alcides Malossi Junior","Grassi Neto","Alexandre Almeida","Roberto Porto","Tetsuzo Namba","Sérgio Coelho","Silmar Fernandes","Alcides Malossi Junior","Grassi Neto","Andrade Sampaio","César Augusto Andrade de Castro","Fátima Gomes","Costabile e Solimene","Amaro Thomé","Márcio Eid Sammarco","Farto Salles","Rachid Vaz de Almeida","Fábio Gouvêa","Nuevo Campos","Francisco Bruno","Carlos Bueno","Nelson Fonseca Júnior","Ulysses Gonçalves Junior","Jucimara Esther de Lima Bueno","Adilson Paukoski Simoni","Xavier de Souza","Paiva Coutinho","Maria Tereza do Amaral","Alexandre Almeida","Guilherme G. Strenger","Salles Abreu","Tetsuzo Namba","Renato Genzani Filho","Amable Lopez Soto","Paulo Rossi","Vico Mañas","João Morenghi","Angélica de Almeida","Sérgio Mazina Martins","Heitor Donizete de Oliveira","Marcelo Gordo","Augusto de Siqueira","Moreira da Silva","Marcelo Gordo","Cardoso Perpétuo","França Carvalho","Xisto Albarelli Rangel Neto","Marcelo Semer","Luis Augusto de Sampaio Arruda","Cláudio Marques","De Paula Santos","Sérgio Mazina Martins","J. E. S. Bittencourt Rodrigues","Luís Geraldo Lanfredi","Walter da Silva","Hermann Herschander","Marco de Lorenzi","Miguel Marques e Silva","Fernando Torres Garcia","Laerte Marrone","Freire Teotônio","Ricardo Sale Júnior","Gilda Alves Barbosa Diodatti","Willian Campos","Poças Leitão","Cláudio Marques","Gilberto Cruz","Bueno de Camargo","Leme Garcia","Guilherme de Souza Nucci","Otávio de Almeida Toledo","Camargo Aranha Filho","Newton Neves","Osni Pereira","Marcos Alexandre Coelho Zilli"],"anos":["2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020","2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2019, 2020","2021, 2022","2019","2020","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020","2020, 2021, 2022","2021, 2022","2019","2020","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2022","2019, 2020, 2021","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2022","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2020, 2021, 2022","2019, 2020","2019, 2020, 2021, 2022","2019, 2020, 2021","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2019, 2020, 2021","2021, 2022","2021, 2022","2020, 2021, 2022","2019, 2020","2021, 2022","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2020, 2021, 2022","2020, 2021, 2022","2019, 2020, 2021, 2022","2020, 2021, 2022","2019","2021, 2022","2019","2019","2019, 2020","2019","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020","2020, 2021, 2022","2019, 2020, 2021, 2022","2019","2019","2019","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2019, 2020, 2021, 2022","2021, 2022","2022","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020","2019, 2020","2020, 2021, 2022","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2021, 2022","2019, 2020, 2021, 2022","2019","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020","2019, 2020","2020, 2021, 2022","2021, 2022","2019, 2020","2021, 2022","2019","2021","2022","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2020, 2021, 2022","2019, 2020, 2021, 2022","2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021","2019, 2020, 2021, 2022","2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2019, 2020, 2021, 2022","2020, 2021, 2022"]},"columns":[{"id":"orgao_julgador","name":"orgao_julgador","type":"character"},{"id":"magistrado","name":"magistrado","type":"character"},{"id":"anos","name":"anos","type":"character"}],"highlight":true,"striped":true,"compact":true,"dataKey":"b94eae17e7e99114c821a6c86b9db954"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="resultados" class="level3">
+<h3 class="anchored" data-anchor-id="resultados">Resultados</h3>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> aux_plot <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(decision <span class="sc">==</span> <span class="st">"Negaram"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">camara =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    orgao_julgador, prop, dplyr<span class="sc">::</span>last, <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">`</span><span class="at">Polo MP</span><span class="st">`</span> <span class="ot">=</span> polo_mp) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> camara, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_col</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> viridis<span class="sc">::</span><span class="fu">viridis</span>(<span class="dv">2</span>, <span class="at">begin =</span> .<span class="dv">2</span>, <span class="at">end =</span> .<span class="dv">8</span>)[<span class="dv">1</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">vars</span>(<span class="st">`</span><span class="at">Polo MP</span><span class="st">`</span>), <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labeller =</span> ggplot2<span class="sc">::</span>label_both</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_hc</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_hline</span>(<span class="at">yintercept =</span> .<span class="dv">5</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Câmara de Julgamento"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Taxa de não-reforma (negados)"</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(p)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-resultados-camara" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4426271d0412a5b052fd" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4426271d0412a5b052fd">{"x":{"data":[{"orientation":"v","width":[0.89999999999999858,0.89999999999999858,0.90000000000000036,0.89999999999999991,0.90000000000000036,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999947,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[14,13,6,1,5,2,7,4,3,11,10,16,12,8,9,15],"y":[0.61862348178137649,0.59874888293118855,0.28298086606243705,0.27059925093632958,0.32671081677704195,0.3167989417989418,0.40033085194375517,0.30418535127055307,0.30973451327433627,0.55769230769230771,0.48613518197573657,0.73841554559043343,0.46463932107496464,0.41752988047808764,0.40654205607476634,0.71103896103896103],"text":["camara: 01<br />prop: 0.6186235","camara: 02<br />prop: 0.5987489","camara: 03<br />prop: 0.2829809","camara: 04<br />prop: 0.2705993","camara: 05<br />prop: 0.3267108","camara: 06<br />prop: 0.3167989","camara: 07<br />prop: 0.4003309","camara: 08<br />prop: 0.3041854","camara: 09<br />prop: 0.3097345","camara: 10<br />prop: 0.5576923","camara: 11<br />prop: 0.4861352","camara: 12<br />prop: 0.7384155","camara: 13<br />prop: 0.4646393","camara: 14<br />prop: 0.4175299","camara: 15<br />prop: 0.4065421","camara: 16<br />prop: 0.7110390"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(65,68,135,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999858,0.90000000000000036,0.89999999999999991,0.90000000000000036,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999947,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[14,13,6,1,5,2,7,4,3,11,10,16,12,8,9,15],"y":[0.2965217999860032,0.36051502145922748,0.66163492800743151,0.86627593120999458,0.66211225997045786,0.83719488133491182,0.62141327623126341,0.73663680136527088,0.73819005767646251,0.45753640299094844,0.46226415094339623,0.19337366347777152,0.44207199071087599,0.54065550906555093,0.49252912954078137,0.29420731707317072],"text":["camara: 01<br />prop: 0.2965218","camara: 02<br />prop: 0.3605150","camara: 03<br />prop: 0.6616349","camara: 04<br />prop: 0.8662759","camara: 05<br />prop: 0.6621123","camara: 06<br />prop: 0.8371949","camara: 07<br />prop: 0.6214133","camara: 08<br />prop: 0.7366368","camara: 09<br />prop: 0.7381901","camara: 10<br />prop: 0.4575364","camara: 11<br />prop: 0.4622642","camara: 12<br />prop: 0.1933737","camara: 13<br />prop: 0.4420720","camara: 14<br />prop: 0.5406555","camara: 15<br />prop: 0.4925291","camara: 16<br />prop: 0.2942073"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(65,68,135,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.40000000000000002,16.600000000000001],"y":[0.5,0.5],"text":"yintercept: 0.5","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.40000000000000002,16.600000000000001],"y":[0.5,0.5],"text":"yintercept: 0.5","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":38.980489829804903,"r":7.3059360730593621,"b":42.573682025736829,"l":46.027397260273986},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"sans","size":15.940224159402243},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,16.600000000000001],"tickmode":"array","ticktext":["04","06","09","08","05","03","07","14","15","11","10","13","02","01","16","12"],"tickvals":[1,2,3.0000000000000004,4,5,6,7,8,9,10,11,12,13,14,15,16],"categoryorder":"array","categoryarray":["04","06","09","08","05","03","07","14","15","11","10","13","02","01","16","12"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"sans","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"annotations":[{"text":"Câmara de Julgamento","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"sans","size":15.940224159402243},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-22.98048982980491},{"text":"Taxa de não-reforma (negados)","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"sans","size":15.940224159402243},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-29.3565794935658},{"text":"Polo MP: Ativo","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"sans","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Polo MP: Passivo","x":0.5,"y":0.48432959734329595,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"sans","size":12.7521793275218},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0.51567040265670405,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.043313796560499732,0.90958972777049429],"tickmode":"array","ticktext":["0%","25%","50%","75%"],"tickvals":[0,0.25,0.5,0.75],"categoryorder":"array","categoryarray":["0%","25%","50%","75%"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"sans","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(216,216,216,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0.51567040265670405,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176002,"linetype":"none"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.441677044416778,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":0.48432959734329595},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176002,"linetype":"none"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":24.441677044416778,"yanchor":0.48432959734329595,"ysizemode":"pixel"}],"yaxis2":{"type":"linear","autorange":false,"range":[-0.043313796560499732,0.90958972777049429],"tickmode":"array","ticktext":["0%","25%","50%","75%"],"tickvals":[0,0.25,0.5,0.75],"categoryorder":"array","categoryarray":["0%","25%","50%","75%"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"sans","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.48432959734329595],"gridcolor":"rgba(216,216,216,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"sans","size":12.7521793275218}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6992137fa345":{"x":{},"y":{},"type":"bar"},"699258623042":{"yintercept":{}}},"cur_data":"6992137fa345","visdat":{"6992137fa345":["function (y) ","x"],"699258623042":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<figcaption class="figure-caption">Figura&nbsp;1: Resultados por câmara</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

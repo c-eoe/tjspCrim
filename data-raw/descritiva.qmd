@@ -1,0 +1,281 @@
+---
+title: "Análise descritiva"
+format:
+  html:
+    code-fold: true
+lang: pt
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| cache: true
+#| echo: false
+
+print(1+1)
+
+da_cposg_sem_movs <- readr::read_rds("da_cposg_sem_movs.rds") |>
+  dplyr::group_by(orgao_julgador) |>
+  dplyr::mutate(n_cam = dplyr::n()) |>
+  dplyr::ungroup() |>
+  dplyr::filter(n_cam > 100) |>
+  dplyr::mutate(orgao_julgador = stringr::str_replace(
+    orgao_julgador, "^([0-9]ª)", "0\\1"
+  ))
+
+aux_composicao <- readr::read_rds("rds/aux_composicao.rds")
+aux_partes <- readr::read_rds("rds/aux_partes.rds")
+aux_decisoes <- readr::read_rds("rds/aux_decisoes.rds")
+aux_decisoes_cat <- readr::read_rds("rds/aux_decisoes_cat.rds")
+
+View(aux_composicao)
+
+aux_plot <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente")) |>
+  dplyr::count(polo_mp, orgao_julgador, decision) |>
+  dplyr::group_by(polo_mp, orgao_julgador) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::arrange(orgao_julgador) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  )
+
+#cjsg <- readr::read_rds("da_cjsg.rds")
+
+```
+
+## Introdução
+
+## Metodologia
+
+## Descritiva
+
+Quantitativos gerais:
+
+- Quantidade de acórdãos baixados (CJSG): 397,543
+- Quantidade de processos distintos (CJSG): 392.844
+- Quantidade de processos consultados (CPOSG): 315.197
+    - O restante estava em segredo de justiça
+
+Partes e decisão:
+
+- Quantidade de processos com decisão de mérito: 268.477
+    - O restante estava como não conhecido, prejudicado, extinção de punibilidade, diligência etc
+- Quantidade de processos com MP como apelante ou apelado: 291.289
+    - O restante estava como apelante E apelado
+- Combinando partes e decisão, temos 247.625 casos
+
+### Quantidade de decisões no tempo
+
+Por ano (geral)
+
+```{r}
+aux_decisoes |>
+  dplyr::mutate(
+    ano = lubridate::year(decisoes_data)
+  ) |>
+  dplyr::count(ano) |>
+  ggplot2::ggplot(ggplot2::aes(x = ano, y = n)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggthemes::theme_hc()
+```
+
+Por ano (câmaras)
+
+```{r}
+aux_decisoes |>
+  dplyr::mutate(
+    ano = lubridate::year(decisoes_data),
+    orgao_julgador = stringr::str_extract(orgao_julgador, ".*Câmara")
+  ) |>
+  dplyr::count(ano, orgao_julgador) |>
+  ggplot2::ggplot(ggplot2::aes(x = ano, y = n)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(ggplot2::vars(orgao_julgador)) +
+  ggthemes::theme_hc()
+```
+
+Por mês (geral)
+
+```{r}
+aux_decisoes |>
+  dplyr::mutate(
+    ano_mes = lubridate::floor_date(decisoes_data, "month")
+  ) |>
+  dplyr::count(ano_mes) |>
+  ggplot2::ggplot(ggplot2::aes(x = ano_mes, y = n)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggthemes::theme_hc()
+```
+
+
+Por mês (câmaras)
+
+```{r}
+aux_decisoes |>
+  dplyr::mutate(
+    ano_mes = lubridate::floor_date(decisoes_data, "month"),
+    orgao_julgador = stringr::str_extract(orgao_julgador, ".*Câmara")
+  ) |>
+  dplyr::count(ano_mes, orgao_julgador) |>
+  ggplot2::ggplot(ggplot2::aes(x = ano_mes, y = n)) +
+  ggplot2::geom_line() +
+  ggplot2::facet_wrap(ggplot2::vars(orgao_julgador)) +
+  ggthemes::theme_hc()
+```
+
+
+### Composição
+
+```{r}
+aux_composicao |>
+  dplyr::inner_join(
+    dplyr::select(aux_decisoes, file, decisoes_data),
+    "file"
+  ) |>
+  dplyr::inner_join(
+    dplyr::select(da_cposg_sem_movs, file, orgao_julgador),
+    "file"
+  ) |>
+  dplyr::mutate(ano = lubridate::year(decisoes_data)) |>
+  dplyr::group_by(ano, orgao_julgador, magistrado) |>
+  dplyr::mutate(n = dplyr::n()) |>
+  dplyr::ungroup() |>
+  dplyr::filter(n <= 100) |>
+  dplyr::distinct(ano, orgao_julgador, magistrado, n) |>
+  dplyr::arrange(magistrado) |>
+  dplyr::group_by(ano, orgao_julgador) |>
+  dplyr::summarise(
+    pessoas = paste(glue::glue("{seq_len(dplyr::n())} {magistrado} ({n})"), collapse = "<br>"),
+    .groups = "drop"
+  ) |>
+  tidyr::pivot_wider(names_from = ano, values_from = pessoas) |>
+  reactable::reactable(
+    columns = list(
+      `2019` = reactable::colDef(align = "left", html = TRUE),
+      `2020` = reactable::colDef(align = "left", html = TRUE),
+      `2021` = reactable::colDef(align = "left", html = TRUE),
+      `2022` = reactable::colDef(align = "left", html = TRUE)
+    ),
+    striped = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    style = list(
+      fontSize = 14
+    )
+  )
+```
+
+```{r}
+aux_composicao |>
+  dplyr::inner_join(
+    dplyr::select(aux_decisoes, file, decisoes_data),
+    "file"
+  ) |>
+  dplyr::inner_join(
+    dplyr::select(da_cposg_sem_movs, file, orgao_julgador),
+    "file"
+  ) |>
+  dplyr::mutate(
+    ano = lubridate::year(decisoes_data),
+    orgao_julgador = stringr::str_extract(orgao_julgador, ".*Câmara")
+  ) |>
+  dplyr::group_by(ano, orgao_julgador, magistrado) |>
+  dplyr::mutate(n = dplyr::n()) |>
+  dplyr::ungroup() |>
+  dplyr::filter(n > 100) |>
+  dplyr::distinct(ano, orgao_julgador, magistrado, n) |>
+  dplyr::arrange(magistrado) |>
+  dplyr::group_by(orgao_julgador, magistrado) |>
+  dplyr::summarise(
+    anos = paste(unique(sort(ano)), collapse = ", "),
+    n = sum(n),
+    .groups = "drop"
+  ) |>
+  dplyr::arrange(orgao_julgador, dplyr::desc(n)) |>
+  dplyr::select(-n) |>
+  reactable::reactable(
+    striped = TRUE,
+    compact = TRUE,
+    highlight = TRUE
+  )
+```
+
+### Resultados
+
+```{r}
+#| label: fig-resultados-camara
+#| fig-cap: Resultados por câmara
+p <- aux_plot |>
+  dplyr::filter(decision == "Negaram") |>
+  dplyr::mutate(camara = forcats::fct_reorder(
+    orgao_julgador, prop, dplyr::last, .desc = TRUE
+  )) |>
+  dplyr::mutate(`Polo MP` = polo_mp) |>
+  ggplot2::ggplot(ggplot2::aes(x = camara, y = prop)) +
+  ggplot2::geom_col(
+    fill = viridis::viridis(2, begin = .2, end = .8)[1]
+  ) +
+  ggplot2::facet_wrap(
+    ggplot2::vars(`Polo MP`), ncol = 1,
+    labeller = ggplot2::label_both
+  ) +
+  ggthemes::theme_hc(12) +
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  ggplot2::geom_hline(yintercept = .5, linetype = 2) +
+  ggplot2::labs(
+    x = "Câmara de Julgamento",
+    y = "Taxa de não-reforma (negados)"
+  )
+plotly::ggplotly(p)
+```
+
+```{r}
+#| label: fig-resultados-camara
+#| fig-cap: Resultados por câmara
+
+
+aux_plot <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente", "Não conhecido")) |>
+  dplyr::count(polo_mp, orgao_julgador, decision) |>
+  dplyr::group_by(polo_mp, orgao_julgador) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::arrange(orgao_julgador) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  )
+
+p <- aux_plot |>
+  dplyr::filter(decision == "Não conhecido") |>
+  dplyr::mutate(camara = forcats::fct_reorder(
+    orgao_julgador, prop, dplyr::last, .desc = TRUE
+  )) |>
+  dplyr::mutate(`Polo MP` = polo_mp) |>
+  ggplot2::ggplot(ggplot2::aes(x = camara, y = prop)) +
+  ggplot2::geom_col(
+    fill = viridis::viridis(2, begin = .2, end = .8)[1]
+  ) +
+  ggplot2::facet_wrap(
+    ggplot2::vars(`Polo MP`), ncol = 1,
+    labeller = ggplot2::label_both
+  ) +
+  ggthemes::theme_hc(12) +
+  ggplot2::scale_y_continuous(labels = scales::percent) +
+  #ggplot2::geom_hline(yintercept = .5, linetype = 2) +
+  ggplot2::labs(
+    x = "Câmara de Julgamento",
+    y = "Taxa de não-reforma (negados)"
+  )
+plotly::ggplotly(p)
+```
+
+pesquisar: o advogado do MP é o promotor?

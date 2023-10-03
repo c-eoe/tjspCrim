@@ -1,0 +1,4 @@
+- source: descritiva.qmd
+  quarto-pub:
+    - id: b1bddff8-e88e-4e8b-8e52-562c653659ed
+      url: 'https://jtrecenti.quarto.pub/tjspcrim'

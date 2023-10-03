@@ -15,3 +15,6 @@ data-raw/da_cjsg.rds
 data-raw/da_cjsg.parquet
 data-raw/da_cposg_sem_movs.rds
 data-raw/ref
+data-raw/parquet
+data-raw/cposg_chunks_html
+data-raw/planejamento.qmd
