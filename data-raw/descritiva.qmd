@@ -11,10 +11,15 @@ lang: pt
 #| include: false
 #| cache: true
 #| echo: false
+#| message: false
+#| warning: false
 
 print(1+1)
+library(sf)
+devtools::load_all()
 
-da_cposg_sem_movs <- readr::read_rds("da_cposg_sem_movs.rds") |>
+da_cposg_sem_movs <- here::here("data-raw/rds/da_cposg_sem_movs.rds") |>
+  readr::read_rds() |>
   dplyr::group_by(orgao_julgador) |>
   dplyr::mutate(n_cam = dplyr::n()) |>
   dplyr::ungroup() |>
@@ -23,12 +28,35 @@ da_cposg_sem_movs <- readr::read_rds("da_cposg_sem_movs.rds") |>
     orgao_julgador, "^([0-9]ª)", "0\\1"
   ))
 
-aux_composicao <- readr::read_rds("rds/aux_composicao.rds")
-aux_partes <- readr::read_rds("rds/aux_partes.rds")
-aux_decisoes <- readr::read_rds("rds/aux_decisoes.rds")
-aux_decisoes_cat <- readr::read_rds("rds/aux_decisoes_cat.rds")
+da_cposg_sem_movs |>
+  dplyr::slice_sample(n = 1) |>
+  with(file)
 
-View(aux_composicao)
+aux_composicao <- readr::read_rds(
+  here::here("data-raw/rds/aux_composicao.rds")
+)
+aux_partes <- readr::read_rds(
+  here::here("data-raw/rds/aux_partes.rds")
+)
+aux_decisoes <- readr::read_rds(
+  here::here("data-raw/rds/aux_decisoes.rds")
+)
+aux_decisoes_cat <- readr::read_rds(
+  here::here("data-raw/rds/aux_decisoes_cat.rds")
+)
+aux_comarca <- readr::read_rds(
+  here::here("data-raw/rds/aux_comarca.rds")
+)
+comarca_sf <- readr::read_rds(
+  here::here("data-raw/rds/comarca_sf.rds")
+)
+aux_magistrado <- readr::read_rds(
+  here::here("data-raw/rds/aux_magistrado.rds")
+)
+depara_relator <- readr::read_rds(
+  here::here("data-raw/rds/depara_relator.rds")
+)
+
 
 aux_plot <- aux_decisoes_cat |>
   dplyr::inner_join(aux_partes, c("file")) |>
@@ -42,6 +70,75 @@ aux_plot <- aux_decisoes_cat |>
   dplyr::mutate(
     orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
   )
+
+aux_tab_relator <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente")) |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  ) |>
+  dplyr::inner_join(
+    dplyr::mutate(depara_relator, relator = toupper(magistrado)),
+    c("relator")
+  ) |>
+  dplyr::group_by(orgao_julgador, polo_mp, relator) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    prop_negados = mean(decision == "Negaram"),
+    unanimidade = mean(unanimidade == "Unânime"),
+    .groups = "drop"
+  ) |>
+  dplyr::filter(n > 100) |>
+  dplyr::arrange(dplyr::desc(prop_negados))
+
+aux_magistrado_comp <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente")) |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  ) |>
+  dplyr::inner_join(
+    dplyr::mutate(depara_relator, relator = toupper(magistrado)),
+    c("relator")
+  ) |>
+  dplyr::select(-origem) |>
+  dplyr::inner_join(
+    aux_magistrado,
+    c("nome")
+  ) |>
+  dplyr::select(
+    faculdade:origem, polo_mp, decision, unanimidade
+  )
+
+
+aux_plot_conhec <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente", "Não conhecido")) |>
+  dplyr::count(polo_mp, orgao_julgador, decision) |>
+  dplyr::group_by(polo_mp, orgao_julgador) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::arrange(orgao_julgador) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  )
+
+aux_plot_unan <- aux_decisoes_cat |>
+  dplyr::inner_join(aux_partes, c("file")) |>
+  dplyr::inner_join(da_cposg_sem_movs, "file") |>
+  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente")) |>
+  dplyr::count(polo_mp, orgao_julgador, unanimidade) |>
+  dplyr::group_by(polo_mp, orgao_julgador) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::arrange(orgao_julgador) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
+  )
+
 
 #cjsg <- readr::read_rds("da_cjsg.rds")
 
@@ -73,6 +170,8 @@ Partes e decisão:
 Por ano (geral)
 
 ```{r}
+library(sf)
+devtools::load_all()
 aux_decisoes |>
   dplyr::mutate(
     ano = lubridate::year(decisoes_data)
@@ -237,24 +336,10 @@ plotly::ggplotly(p)
 ```
 
 ```{r}
-#| label: fig-resultados-camara
-#| fig-cap: Resultados por câmara
-
-
-aux_plot <- aux_decisoes_cat |>
-  dplyr::inner_join(aux_partes, c("file")) |>
-  dplyr::inner_join(da_cposg_sem_movs, "file") |>
-  dplyr::filter(decision %in% c("Negaram", "Provido", "Parcialmente", "Não conhecido")) |>
-  dplyr::count(polo_mp, orgao_julgador, decision) |>
-  dplyr::group_by(polo_mp, orgao_julgador) |>
-  dplyr::mutate(prop = n / sum(n)) |>
-  dplyr::arrange(orgao_julgador) |>
-  dplyr::ungroup() |>
-  dplyr::mutate(
-    orgao_julgador = stringr::str_extract(orgao_julgador, "[0-9]{2}")
-  )
-
-p <- aux_plot |>
+#| label: fig-resultados-camara-nao-conhecido
+#| fig-cap: Proporção de não conhecidos por câmara
+#|
+p <- aux_plot_conhec |>
   dplyr::filter(decision == "Não conhecido") |>
   dplyr::mutate(camara = forcats::fct_reorder(
     orgao_julgador, prop, dplyr::last, .desc = TRUE
@@ -273,9 +358,281 @@ p <- aux_plot |>
   #ggplot2::geom_hline(yintercept = .5, linetype = 2) +
   ggplot2::labs(
     x = "Câmara de Julgamento",
-    y = "Taxa de não-reforma (negados)"
+    y = "Taxa de casos não conhecidos"
   )
 plotly::ggplotly(p)
 ```
 
-pesquisar: o advogado do MP é o promotor?
+### Promotor do MP
+
+Infelizmente, não temos o nome do promotor do MP que atua no caso.
+
+### Comarca de origem
+
+Média anual de processos por comarca de origem
+
+```{r}
+aux_contagens_comarca <- aux_comarca |>
+  dplyr::mutate(ano = lubridate::year(decisoes_data)) |>
+  dplyr::filter(ano %in% 2019:2022) |>
+  dplyr::count(comarca) |>
+  dplyr::filter(!is.na(comarca)) |>
+  # dividimos por 4 para dar a média por ano
+  dplyr::mutate(n = n / 4)
+
+contagens_sf <- comarca_sf |>
+  dplyr::left_join(aux_contagens_comarca, "comarca") |>
+  dplyr::mutate(ncat = cut(
+    n, c(0, 200, 500, 1000, 100000),
+    labels = c(
+      "Até 200", "Entre 200 e 500",
+      "Entre 500 e 1.000", "Mais de 1.000"
+    ),
+    include.lowest = FALSE
+  )) |>
+  dplyr::filter(!is.na(comarca))
+```
+
+```{r}
+contagens_sf |>
+  ggplot2::ggplot(ggplot2::aes(fill = ncat)) +
+  ggplot2::geom_sf(colour = "black", linewidth = .15) +
+  ggplot2::scale_fill_viridis_d(
+    begin = .2, end = .8
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::labs(
+    fill = "Decisões / Ano"
+  )
+```
+
+Versão interativa
+
+```{r}
+tmap::tmap_mode("view")
+
+contagens_sf |>
+  tmap::tm_shape() +
+  tmap::tm_polygons(
+    "ncat",
+    legend.title = "Processos / ano",
+    popup.vars = c("comarca", "n"),
+    palette = viridis::viridis(4, 1, .2, .8)
+  )
+```
+
+Comarca de origem por ano
+
+```{r}
+aux_contagens_comarca_ano <- aux_comarca |>
+  dplyr::mutate(ano = lubridate::year(decisoes_data)) |>
+  dplyr::filter(ano %in% 2019:2022) |>
+    dplyr::filter(!is.na(comarca)) |>
+  dplyr::count(comarca, ano)
+
+contagens_sf_ano <- comarca_sf |>
+  dplyr::left_join(aux_contagens_comarca_ano, "comarca") |>
+  dplyr::mutate(ncat = cut(
+    n, c(0, 200, 500, 1000, 100000),
+    labels = c("Até 200", "Entre 200 e 500", "Entre 500 e 1.000", "Mais de 1.000")
+  ))
+
+contagens_sf_ano |>
+  ggplot2::ggplot(ggplot2::aes(fill = ncat)) +
+  ggplot2::geom_sf() +
+  ggplot2::scale_fill_viridis_d(
+    begin = .2, end = .8
+  ) +
+  ggplot2::facet_wrap(ggplot2::vars(ano), ncol = 2) +
+  ggplot2::theme_void() +
+  ggplot2::labs(
+    fill = "Decisões / Ano"
+  )
+
+```
+
+Versão interativa
+
+```{r}
+tmap::tmap_mode("view")
+
+contagens_sf_ano |>
+  tidyr::pivot_wider(
+    names_from = "ano",
+    values_from = c("n", "ncat")
+  ) |>
+  tmap::tm_shape() +
+  tmap::tm_polygons(
+    c("ncat_2019", "ncat_2020", "ncat_2021", "ncat_2022"),
+    legend.title = c(
+      "Processos (2019)", "Processos (2020)",
+      "Processos (2021)", "Processos (2022)"
+    ),
+    popup.vars = c("comarca", "n_2019", "n_2020", "n_2021", "n_2022"),
+    palette = viridis::viridis(4, 1, .2, .8)
+  ) +
+  tmap::tm_facets(sync = TRUE, ncol = 2)
+```
+
+### Unanimidade
+
+A taxa de unanimidade geral no período é de 97.7%.
+
+```{r}
+#| label: fig-unanimidade-camara
+#| fig-cap: Unanimidade por câmara
+p <- aux_plot_unan |>
+  dplyr::filter(unanimidade == "Unânime") |>
+  dplyr::mutate(camara = forcats::fct_reorder(
+    orgao_julgador, prop, mean, .desc = TRUE
+  )) |>
+  dplyr::mutate(`Polo MP` = polo_mp) |>
+  ggplot2::ggplot(ggplot2::aes(x = prop, y = camara)) +
+  ggplot2::geom_point(size = 3) +
+  ggplot2::geom_segment(
+    ggplot2::aes(x = 0, xend = prop, y = camara, yend = camara),
+    colour = viridis::viridis(2, begin = .2, end = .8)[1]
+  ) +
+  ggplot2::facet_wrap(
+    ggplot2::vars(`Polo MP`), ncol = 1,
+    labeller = ggplot2::label_both
+  ) +
+  ggplot2::theme_minimal(12) +
+  ggplot2::scale_x_continuous(labels = scales::percent) +
+  ggplot2::geom_vline(xintercept = .95, linetype = 2) +
+  ggplot2::labs(
+    y = "Câmara de Julgamento",
+    x = "Taxa de unanimidade"
+  )
+
+plotly::ggplotly(p)
+```
+
+### Relatores
+
+Proporção de negados e unanimidade por relator
+
+```{r}
+aux_tab_relator |>
+  reactable::reactable(list(
+    prop_negados = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    ),
+    unanimidade = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+
+Descritivas por variável: polo MP Ativo
+
+::: {.panel-tabset}
+
+
+## Idade
+
+```{r}
+aux_magistrado_comp |>
+  dplyr::mutate(idade = as.character(cut(idade, c(50, 60, 70, 80)))) |>
+  tidyr::replace_na(list(idade = "-")) |>
+  dplyr::group_by(polo_mp, idade) |>
+  dplyr::summarise(
+    prop_negados = mean(decision == "Negaram"),
+    unanimidade = mean(unanimidade == "Unânime"),
+    .groups = "drop"
+  ) |>
+  reactable::reactable(list(
+    prop_negados = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    ),
+    unanimidade = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+
+## Origem
+
+```{r}
+aux_magistrado_comp |>
+  dplyr::group_by(polo_mp, origem) |>
+  dplyr::summarise(
+    prop_negados = mean(decision == "Negaram"),
+    unanimidade = mean(unanimidade == "Unânime"),
+    .groups = "drop"
+  ) |>
+  reactable::reactable(list(
+    prop_negados = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    ),
+    unanimidade = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+
+## Capital
+
+```{r}
+aux_magistrado_comp |>
+  dplyr::group_by(polo_mp, capital) |>
+  dplyr::summarise(
+    prop_negados = mean(decision == "Negaram"),
+    unanimidade = mean(unanimidade == "Unânime"),
+    .groups = "drop"
+  ) |>
+  reactable::reactable(list(
+    prop_negados = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    ),
+    unanimidade = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+
+## Faculdade
+
+```{r}
+aux_magistrado_comp |>
+  dplyr::group_by(polo_mp, faculdade) |>
+  dplyr::summarise(
+    prop_negados = mean(decision == "Negaram"),
+    unanimidade = mean(unanimidade == "Unânime"),
+    .groups = "drop"
+  ) |>
+  reactable::reactable(list(
+    prop_negados = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    ),
+    unanimidade = reactable::colDef(
+      align = "center",
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+
+:::
+
+
+Relatores não encontrados
+
+```{r}
+aux_composicao |>
+  dplyr::count(magistrado) |>
+  dplyr::mutate(
+    nome = clean_nm(magistrado)
+  ) |>
+  dplyr::anti_join(aux_magistrado, "nome") |>
+  dplyr::arrange(dplyr::desc(n)) |>
+  reactable::reactable()
+```

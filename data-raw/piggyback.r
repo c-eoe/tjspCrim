@@ -36,7 +36,7 @@ piggyback::pb_new_release(tag = "parquet")
 
 piggyback::pb_upload(
   "data-raw/parquet/da_cjsg.parquet",
-  tag = "rds"
+  tag = "parquet"
 )
 
 piggyback::pb_release_delete(tag = "rds_cposg_full")
